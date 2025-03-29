@@ -1,0 +1,1 @@
+flag = "codegate2025{fake_flag}"
