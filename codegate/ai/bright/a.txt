@@ -1,0 +1,24 @@
+[>] Trying image: images/absolute-cinema.png
+[*] Challenge: s.Agpp.AAAw1HCeLfDl0y6Zk9w7vdUt
+[*] PoW Solution: s.AABFLiRfAiK5FJBm4MNZuBGjVVZDFlzwAYNyXjBfAvPUMC0OxG8qMjTTmU+E83xNiI2JGPTL/bD+EriFnFvaf7xNj1nI/mh/O3MgU4Qk2w8Gw+TB5enYiB49JMnPiLy2Hyh3Dt8pfgeGlZF4oA+iBj+H8EyUt7dbr64llhwQvfyJhIpxKnnJ5XH1I7YLSQkgVMbHskW0TywaiRBXXAwtQxSv
+[✘] No flag found
+[!] No output file found
+--------------------------------------------------------------------------------
+[>] Trying image: images/hackerman.png
+[*] Challenge: s.Agpp.AACip0FVwrZ6xQXkBarreYfT
+[*] PoW Solution: s.AAAsRw9a6Km3W3gRFpcewdxtubnJTVKa9wgNXt8LCeqpq//j94yhmLwiOFXwNKJ7/gHy+BdrLIxVK2e+IQ2IjVq0Ope2G9tOAPPFStsYh2RsO45Rj+qGW64PX/uTSu+Ugqu6bzkJIV/RzZPETI/CoW5T9fVrNnmNdR8CtR3px5qxz0e8xMEw81Ff3EDmO3684MwY+hRYXFOYVPaBRMLOLFCM
+[✘] No flag found
+[!] No output file found
+--------------------------------------------------------------------------------
+[>] Trying image: images/oiia.png
+[*] Challenge: s.Agpp.AABT9ZD5JB7pEEyUb6/w6fwS
+[*] PoW Solution: s.AAAwWMeebczaH6D7H/iTG5rpI9aG9cMQFUxkBwkzQlJGpBVqvFo+RqmLY1fTp/1+tixIe4NL3iJ1lpsRxm2ya5HQoI/+boFD0ZHTIGPt2OtD7Fbp5mru1OVsTlLv4LhP6WyP56EH/JyTJDm0TMrO9CRmdjrQnqJTos/hoT7jnR5cLgtA/UE1e2tdB1oQZwU+scQAmGZ3v8+HInnil69ls5/G
+[✘] No flag found
+[!] No output file found
+--------------------------------------------------------------------------------
+[>] Trying image: images/stop-doing-math.png
+[*] Challenge: s.Agpp.AAClMJD0QMF9oKFRIdjjUHxN
+[*] PoW Solution: s.AAAflsilxF8GV5OBRHRsygvkFbenR9xHhQTs65AhgknHFk6Ws7e1fXy5zgR1sdCwVBuhQJVZY0SYfZp53MGtZ9hh/9qBnd/LmS4l6Vs/xXWI/QoAXG846SNW0yN2/8v9SKMTLdZw3Tarp/0imA7nOrnlW2MekKdIEJKmwCWXfjdz+5vmTpNHZNyabDLWx2nEwI5Wwt4YIZajne5gqdwQL5Cy
+[✘] No flag found
+[!] No output file found
+--------------------------------------------------------------------------------
