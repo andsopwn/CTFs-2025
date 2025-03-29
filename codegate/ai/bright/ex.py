@@ -142,7 +142,7 @@ def main():
     if final_mean >= 250.0 and final_sim >= 0.9999:
         print("[Result] 성공적으로 목표 달성!")
     else:
-        print("[Result] mean>=250 and sim>=0.9999 달성 못 할 수도 있습니다.")
+        print("[Result] mean>=250 and sim>=0.9999.")
 
 if __name__ == "__main__":
     main()
