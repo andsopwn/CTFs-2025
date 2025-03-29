@@ -45,41 +45,52 @@ def prepare_image(image_path):
     if mean_rgb < 250:
         white_img = np.full_like(img_array, 255, dtype=np.float32)
         alpha = 0.0
-        step = 0.0001  # 초기 탐색 스텝
+        step = 1e-5  # ChatGPT와 동일한 초기 스텝
         
-        # 1단계: RGB 평균 250.0~250.1 사이로 초기 alpha 설정
-        while mean_rgb < 250 and alpha < 1.0:
+        # 1단계: ChatGPT 방식으로 선형 탐색 (0~1, step=1e-5)
+        print(f"[{image_path}] [Phase 1] Searching alpha in [0..1] with step={step}, total steps ~ 100000")
+        best_alpha = alpha
+        best_sim = -1.0
+        best_array = img_array.copy()
+        total_steps = 100000
+        
+        for i in range(total_steps):
+            alpha = i * step
             blended_array = img_array * (1 - alpha) + white_img * alpha
             mean_rgb = blended_array.mean()
-            alpha += step
-            if alpha % 0.01 == 0:
-                print(f"[{image_path}] Alpha {alpha:.4f}, RGB Mean: {mean_rgb}")
+            
+            if mean_rgb >= 250:
+                new_img = Image.fromarray(np.clip(blended_array, 0, 255).astype(np.uint8))
+                with torch.no_grad():
+                    new_tensor = preprocess(new_img).unsqueeze(0)
+                    new_feature = model.encode_image(new_tensor)[0].numpy()
+                    new_feature = new_feature / np.linalg.norm(new_feature)
+                sim = np.dot(orig_feature, new_feature)
+                
+                if sim > best_sim:
+                    best_sim = sim
+                    best_alpha = alpha
+                    best_array = blended_array.copy()
+            
+            if i % 10000 == 0:
+                print(f"[{image_path}] Step {i}/{total_steps-1}, alpha={alpha:.5f}, cur_mean={mean_rgb:.2f}, best_sim={best_sim:.6f}")
+            
+            if mean_rgb > 250.1:  # 250.1 초과 시 중단
+                break
         
-        if mean_rgb > 250.1:
-            while mean_rgb > 250.1:
-                alpha -= step
-                blended_array = img_array * (1 - alpha) + white_img * alpha
-                mean_rgb = blended_array.mean()
-            print(f"[{image_path}] Adjusted Alpha {alpha:.4f}, RGB Mean: {mean_rgb}")
+        alpha = best_alpha
+        blended_array = best_array
+        mean_rgb = blended_array.mean()
+        print(f"[{image_path}] [Phase 1 Result] Alpha {alpha:.5f}, RGB Mean: {mean_rgb}, Best Similarity: {best_sim}")
         
-        # 초기 유사도 확인
-        new_img = Image.fromarray(np.clip(blended_array, 0, 255).astype(np.uint8))
-        with torch.no_grad():
-            new_tensor = preprocess(new_img).unsqueeze(0)
-            new_feature = model.encode_image(new_tensor)[0].numpy()
-            new_feature = new_feature / np.linalg.norm(new_feature)
-        sim = np.dot(orig_feature, new_feature)
-        print(f"[{image_path}] Initial Alpha {alpha:.4f}, RGB Mean: {mean_rgb}, Similarity: {sim}")
-        
-        # 2단계: 양방향 미세 조정 (최대 1000번)
-        if sim < 0.9999 and mean_rgb >= 250:
-            print(f"[{image_path}] Fine-tuning to reach Similarity > 0.9999")
-            step = 0.00001  # 초기 미세 조정 스텝
-            max_attempts = 1000
-            best_alpha = alpha
-            best_sim = sim
-            best_array = blended_array.copy()
+        # 2단계: 미세 조정으로 유사도 0.9999 목표
+        if best_sim < 0.9999 and mean_rgb >= 250:
+            print(f"[{image_path}] [Phase 2] Fine-tuning to reach Similarity > 0.9999")
+            step = 1e-6  # 더 작은 스텝으로 정밀 조정
+            max_attempts = 10000  # 추가 10,000번 시도
             direction = -1  # 초기 방향: 감소
+            min_alpha = max(0.85, alpha - 0.05)  # 탐색 하한
+            max_alpha = min(0.95, alpha + 0.05)  # 탐색 상한
             
             for attempt in range(max_attempts):
                 blended_array = img_array * (1 - alpha) + white_img * alpha
@@ -96,24 +107,31 @@ def prepare_image(image_path):
                     best_sim = sim
                     best_alpha = alpha
                     best_array = blended_array.copy()
+                    print(f"[{image_path}] New best at Attempt {attempt}, Alpha {alpha:.6f}, RGB Mean: {mean_rgb}, Sim: {sim}")
                 
-                if attempt % 100 == 0:
-                    print(f"[{image_path}] Attempt {attempt}, Alpha {alpha:.6f}, RGB Mean: {mean_rgb}, Sim: {sim}")
+                if attempt % 1000 == 0:
+                    print(f"[{image_path}] Attempt {attempt}, Alpha {alpha:.6f}, RGB Mean: {mean_rgb}, Sim: {sim}, Step: {step:.6f}")
                 
                 if sim >= 0.9999 and mean_rgb >= 250:
                     print(f"[{image_path}] Success! Reached Similarity > 0.9999 at attempt {attempt}")
                     break
                 
-                # 방향 전환 로직
+                # 방향 전환 및 스텝 조정
                 if mean_rgb < 250:
-                    direction = 1  # 증가 방향
-                    alpha = best_alpha + step  # 최적값에서 약간 증가
-                    step *= 0.5  # 스텝 크기 줄여 정밀도 높임
-                elif sim < best_sim - 0.0001:  # 유사도가 크게 떨어지면 반대 방향
+                    direction = 1
+                    alpha = best_alpha + step
+                    step *= 0.5
+                elif sim < best_sim - 0.0001:
                     direction *= -1
                     alpha = best_alpha
+                    step *= 0.5
+                elif alpha < min_alpha or alpha > max_alpha:
+                    direction *= -1
+                    alpha = best_alpha
+                    step *= 0.5
                 
                 alpha += step * direction
+                step = max(step, 1e-7)  # 최소 스텝 크기 제한
                 
                 if attempt == max_attempts - 1:
                     print(f"[{image_path}] Max attempts reached. Best Similarity {best_sim} at Alpha {best_alpha:.6f}")
