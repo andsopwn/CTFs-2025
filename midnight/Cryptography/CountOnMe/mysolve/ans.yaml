@@ -1,0 +1,53 @@
+pos=15, byte=0x63
+pos=14, byte=0x61
+pos=13, byte=0x72
+pos=12, byte=0x4f
+pos=11, byte=0x67
+pos=10, byte=0x6e
+pos=9, byte=0x69
+pos=8, byte=0x64
+pos=7, byte=0x64
+pos=6, byte=0x61
+pos=5, byte=0x50
+pos=4, byte=0x7b
+pos=3, byte=0x46
+pos=2, byte=0x54
+pos=1, byte=0x43
+pos=0, byte=0x4d
+--------------------
+0x63, 0x61, 0x72, 0x4f, 0x67, 0x6e, 0x69, 0x64, 0x64, 0x61, 0x50, 0x7b, 0x46, 0x54, 0x43, 0x4d
+MCTF{PaddingOracl....}
+
+Looks good! block=1, pos=15, guess=0xc0, plain=0x08, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aade5893592ae1b121f4e001c0
+Looks good! block=1, pos=14, guess=0x0b, plain=0x08, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aade5893592ae1b121f4e00bc3
+Looks good! block=1, pos=13, guess=0xeb, plain=0x08, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aade5893592ae1b121f4eb0ac2
+Looks good! block=1, pos=12, guess=0xf8, plain=0x08, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aade5893592ae1b121f8ec0dc5
+Looks good! block=1, pos=11, guess=0x2c, plain=0x08, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aade5893592ae1b12cf9ed0cc4
+Looks good! block=1, pos=10, guess=0xbf, plain=0x08, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aade5893592ae1bf2ffaee0fc7
+Looks good! block=1, pos=9, guess=0xee, plain=0x08, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aade5893592aeebe2efbef0ec6
+Looks good! block=1, pos=8, guess=0x2a, plain=0x08, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aade5893592ae1b121f4e001c9
+Looks good! block=1, pos=7, guess=0x2d, plain=0x7d, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aade58932d2be0b020f5e100c8
+Looks good! block=1, pos=6, guess=0xcb, plain=0x52, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aade58cb2e28e3b323f6e203cb
+Looks good! block=1, pos=5, guess=0x07, plain=0x54, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aade07ca2f29e2b222f7e302ca
+Looks good! block=1, pos=4, guess=0x91, plain=0x43, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18aa9100cd282ee5b525f0e405cd
+Looks good! block=1, pos=3, guess=0xc9, plain=0x6e, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a18c99001cc292fe4b424f1e504cc
+Looks good! block=1, pos=2, guess=0x59, plain=0x4f, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc0a59ca9302cf2a2ce7b727f2e607cf
+Looks good! block=1, pos=1, guess=0x60, plain=0x65, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1cc6058cb9203ce2b2de6b626f3e706ce
+Looks good! block=1, pos=0, guess=0xb0, plain=0x6c, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d496215e1b07f47d48d1cd13432f9a939ecf819d1
+Looks good! block=0, pos=15, guess=0x00, plain=0xe0, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d49621500cc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=14, guess=0x00, plain=0x17, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d49620003cc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=13, guess=0x00, plain=0x61, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d49000102cc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=12, guess=0x00, plain=0x4d, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f23d00070605cc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=11, guess=0x00, plain=0x38, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08f20001060704cc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=10, guess=0x00, plain=0xf4, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc08000302050407cc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=9, guess=0x00, plain=0x0f, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688bc00010203040506cc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=8, guess=0x00, plain=0xb4, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784688000f0e0d0c0b0a09cc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=7, guess=0x00, plain=0x81, forged=e069f281147594d97431a5e713bd55b4d7401b76fd784600010e0f0c0d0a0b08cc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=6, guess=0x00, plain=0x4c, forged=e069f281147594d97431a5e713bd55b4d7401b76fd780003020d0c0f0e09080bcc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=5, guess=0x00, plain=0x73, forged=e069f281147594d97431a5e713bd55b4d7401b76fd000102030c0d0e0f08090acc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=4, guess=0x00, plain=0xf1, forged=e069f281147594d97431a5e713bd55b4d7401b7600070605040b0a09080f0e0dcc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=3, guess=0x00, plain=0x7b, forged=e069f281147594d97431a5e713bd55b4d7401b0001060704050a0b08090e0f0ccc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=2, guess=0x00, plain=0x15, forged=e069f281147594d97431a5e713bd55b4d7400003020504070609080b0a0d0c0fcc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=1, guess=0x00, plain=0x4f, forged=e069f281147594d97431a5e713bd55b4d7000102030405060708090a0b0c0d0ecc0a18aade5893592ae1b121f4e001c9
+Looks good! block=0, pos=0, guess=0x00, plain=0xc7, forged=e069f281147594d97431a5e713bd55b4001f1e1d1c1b1a191817161514131211cc0a18aade5893592ae1b121f4e001c9
+Recovered: b'\xc7O\x15{\xf1sL\x81\xb4\x0f\xf48Ma\x17\xe0leOnCTR}'
